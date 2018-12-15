@@ -1,0 +1,247 @@
+$accent-color: #4AC29A;
+$accent-light: #BDFFF3;
+$primary: #101010;
+$secondary: #747474;
+
+$xl-breakpoint: 1600px;
+$l-breakpoint: 1200px;
+$m-breakpoint: 900px;
+$s-breakpoint: 600px;
+
+$input-padding: 20px 20px 10px;
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1;
+  color: $primary;
+  background: linear-gradient(270deg,#fff 0,#f8f8f8);
+  box-shadow: 10px 0 10px rgba(0,0,0,.05);
+}
+
+header {
+  height: 70px;
+  background-color: lighten($accent-light, 10%);
+  display: flex;
+  align-items: center;
+  padding: 0 3%;
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+
+  h1 {
+    color: $accent-color;
+    font-size: 2rem;
+    flex-shrink: 0;
+    margin-right: 2.5vw;
+
+    @media (max-width: $l-breakpoint) {
+      font-size: 1.5rem;
+    }
+  }
+
+  .search-field {
+    position: relative;
+    margin-left: auto;
+    width: 300px;
+    box-sizing: border-box;
+    border: 2px solid $accent-color;
+    font-size: 1.2rem;
+    background-color: white;
+    background-image: url('https://img.icons8.com/cotton/30/4AC29A/search.png');
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    padding: 10px 20px 10px 50px;
+    transition: width 0.8s ease-in-out;
+    caret-color: $accent-color;
+
+    @media (max-width: $l-breakpoint) {
+      font-size: 1rem;
+      width: 200px;
+    }
+
+    &::placeholder {
+      color: $secondary;
+    }
+
+    &:focus {
+      width: 60%;
+      outline: none;
+
+      @media (max-width: $m-breakpoint) {
+        width: 100%;
+      }
+
+      &::placeholder {
+        color: transparent;
+      }
+    }
+  }
+}
+
+
+.container {
+  height: 100%;
+  width: 100%;
+  max-width: $m-breakpoint;
+  padding: 3%;
+  margin: auto;
+}
+
+.add-task {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  border: 2px solid $accent-color;
+}
+
+.input-field {
+  color: $primary;
+  border: none;
+  border-right: 2px solid $accent-color;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  width: 80%;
+  z-index: 0;
+  caret-color: $accent-color;
+
+  &::placeholder {
+    color: $secondary;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: inset 4px 0 0 0 rgba(0, 255, 152, 0.6);
+
+    &::placeholder {
+      color: transparent;
+    }
+  }
+
+  @media (max-width: $l-breakpoint) {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+}
+
+.btn {
+  color: $accent-color;
+  font-weight: bold;
+  background: white;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 20%;
+  border: none;
+  transition-duration: 0.2s;
+  z-index: 0;
+
+  &:focus {
+    outline: none;
+  }
+
+  @media (max-width: $l-breakpoint) {
+    font-size: 1rem;
+    padding: 5px;
+  }
+
+  &:hover {
+    background-color: $accent-color;
+    color: white;
+  }
+}
+
+.task-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 25px 0;
+  position: relative;
+}
+
+.task {
+  text-decoration: none;
+  display: block;
+  position: relative;
+}
+
+.task-edit {
+  &::before {
+    content: "Click \2714  to save changes";
+    font-size: 0.8rem;
+    color: $accent-color;
+    position: absolute;
+    padding: 6px 0 4px 34px;
+    top: 0;
+    left: 0;
+  }
+}
+
+.task-text {
+  position: relative;
+  cursor: default;
+  resize: none;
+  border: none;
+  width: 100%;
+  outline: none;
+  display: block;
+  overflow: hidden;
+  font-family: inherit;
+  background-color: transparent;
+  padding: $input-padding;
+  padding-left: 34px;
+  font-size: 1.1rem;
+  color: $primary;
+  border-bottom: 2px solid $accent-light;
+
+  &:read-write {
+    cursor: initial;
+    caret-color: $accent-color;
+    animation: borderBlink 0.8s linear infinite alternate;
+
+    @keyframes borderBlink {
+      0% {
+        border-bottom: 3px solid $accent-light;
+      }
+      100% {
+        border-bottom: 3px solid $accent-color;
+      }
+    }
+  }
+}
+
+.delete {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+  color: $secondary;
+
+  &:hover {
+    color: $accent-color;
+  }
+}
+
+.edit {
+  position: absolute;
+  font-size: 1.5rem;
+  color: $secondary;
+  bottom: 0;
+  left: 0;
+  padding: 10px 10px 10px 0;
+  cursor: pointer;
+
+  &:hover {
+    color: $accent-color;
+  }
+}
+
